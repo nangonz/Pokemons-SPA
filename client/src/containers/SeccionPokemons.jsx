@@ -47,7 +47,9 @@ export default function SeccionPokemons(props){
     return(
         <>
             <div className={style.seccion}>
-                {pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />): <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" />}
+                { pokemons?.error? <span>{pokemons.error}</span>
+                :pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />)
+                : <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" /> }
             </div>
 
             { <button disabled={index>0? false: true} onClick={handlePrev}>PREV</button> }
