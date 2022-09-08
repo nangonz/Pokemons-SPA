@@ -28,20 +28,26 @@ router.get('/pokemons', async (req, res)=>{
         }
     }
 
-    const { data: {results: pokemons}} = await axios('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40');
-    if(!pokemons) return res.status(404).send({error: 'Pokemons not found'});
-    const promises = pokemons.map(p => axios(p.url)); // arreglo de promesas
-    const PokeFullData = await Promise.all(promises); // Los datos que quiero estan en data de la respuesta ax
-    const PokeDetails = PokeFullData.map(p => {
-        return {
-            id: p.data.id,
-            name: p.data.name,
-            types: p.data.types.map(t => t.type.name),
-            image: p.data.sprites.other.dream_world.front_default
-        }
-    })
+    try {
+        const { data: {results: pokemons}} = await axios('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40');
 
-    res.json(PokeDetails);
+        const promises = pokemons.map(p => axios(p.url)); // arreglo de promesas
+        const PokeFullData = await Promise.all(promises); // Los datos que quiero estan en data de la respuesta ax
+        const PokeDetails = PokeFullData.map(p => {
+            return {
+                id: p.data.id,
+                name: p.data.name,
+                types: p.data.types.map(t => t.type.name),
+                image: p.data.sprites.other.dream_world.front_default
+            }
+        })
+
+        return res.json(PokeDetails);
+        
+    } catch (error) {
+        return res.status(404).json({error: 'Pokemons not found'});
+    }
+
 });
 
 

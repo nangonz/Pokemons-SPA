@@ -10,7 +10,7 @@ function App() {
     
     <div className="App">
       <Route exact path='/'>
-        <Link to='/home'><button>home</button></Link>
+        <Link to='/home'><button disabled={false} >home</button></Link>
        <h1>Henry Pokemon</h1>
        <img src={landingImage} alt='Landing Background'/>
       </Route>

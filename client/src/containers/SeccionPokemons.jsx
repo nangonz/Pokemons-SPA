@@ -47,12 +47,14 @@ export default function SeccionPokemons(props){
     return(
         <>
             <div className={style.seccion}>
-                {pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />): <img className={style.loading} src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' alt="" />}
+                {pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />): <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" />}
             </div>
 
-            {index > 0? <button onClick={handlePrev}>PREV</button> : <></>}
-            {numberOfPag().map((el, i) => <button key={i} onClick={()=> handlePag(i)} >{el}</button>)}
-            {pokemons?.length - index > 12? <button onClick={handleNext}>NEXT</button>: <></>}
+            { <button disabled={index>0? false: true} onClick={handlePrev}>PREV</button> }
+
+            {numberOfPag().map((el, i) => <button className={index+CardsPerPag === el*CardsPerPag? style.active:''} key={i} onClick={()=> handlePag(i)} >{el}</button>)}
+
+            { <button disabled={pokemons?.length - index > 12? false: true } onClick={handleNext}>NEXT</button> }
 
         </>
     )
