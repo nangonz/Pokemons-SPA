@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getPokemons } from '../redux/actions';
+import { getAllPokemons } from '../redux/actions';
 import landingImage from '../images/pokemonEditado.png';
 import style from './Landing.module.css';
 
@@ -11,7 +11,7 @@ export default function Landing(props){
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getPokemons())
+        dispatch(getAllPokemons())
     }, [dispatch]);
 
 

@@ -8,7 +8,7 @@ export default function Search(props){
     const dispatch = useDispatch()
 
     const handleOnChange = (e) =>{
-        setInput(e.target.value.toUpperCase())
+        setInput(e.target.value)
     };
 
     const handleOnClick = () =>{
@@ -24,7 +24,7 @@ export default function Search(props){
 
     return(
         <div>
-            <input name='name' type="text" value={input} onChange={(e)=>handleOnChange(e)} placeholder="Nombre del Pokemon..." />
+            <input name='name' type="text" onChange={(e)=>handleOnChange(e)} placeholder="Nombre del Pokemon..." />
             <button onClick={handleOnClick}>Buscar</button>
         </div>
     )
