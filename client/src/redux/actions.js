@@ -17,8 +17,11 @@ export const searchPokemon = (name) => dispatch =>{
     return fetch(`http://localhost:3001/pokemons?name=${name}`)
     .then(response => response.json())
     .then(data => {
-        return dispatch({type:SEARCH_POKEMON, payload: data});
-    });
+        return dispatch({type:SEARCH_POKEMON, payload: [data]});
+    })
+    .catch(error=>{
+        return dispatch({type: SEARCH_POKEMON, payload: {error: error}})
+    })
 };
 
 export const clearSearch = () =>{

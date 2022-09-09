@@ -11,7 +11,8 @@ export default function Search(props){
         setInput(e.target.value)
     };
 
-    const handleOnClick = () =>{
+    const handleOnSubmit = (e) =>{
+        e.preventDefault()
         dispatch(searchPokemon(input.toLowerCase()))
     }
 
@@ -24,8 +25,10 @@ export default function Search(props){
 
     return(
         <div>
-            <input name='name' type="text" onChange={(e)=>handleOnChange(e)} placeholder="Nombre del Pokemon..." />
-            <button onClick={handleOnClick}>Buscar</button>
+            <form onSubmit={(e)=> handleOnSubmit(e)}>
+                <input name='name' type="search" onChange={(e)=>handleOnChange(e)} placeholder="Nombre del Pokemon..." />
+                <button type="submit">Buscar</button>
+            </form>
         </div>
     )
 }
