@@ -9,6 +9,7 @@ export default function rootReducer (state=stateInitial, action){
                 ...JSON.parse(JSON.stringify(state)),
                 pokemons: action.payload
             }
+
         default: return state;
     }
 }

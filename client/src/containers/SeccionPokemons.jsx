@@ -48,7 +48,7 @@ export default function SeccionPokemons(props){
         <>
             <div className={style.seccion}>
                 { pokemons?.error? <span>{pokemons.error}</span>
-                :pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />)
+                :pokemons? pokemons.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />)
                 : <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" /> }
             </div>
 

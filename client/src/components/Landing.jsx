@@ -22,12 +22,12 @@ export default function Landing(props){
             </div>
 
             <div className={style.landing_text_div} >
-                <h1>👋🏻Bienvenido!</h1>
-                <div>
+                <h1 className={style.landing_h1}>👋🏻Bienvenido!</h1>
+                <div className={style.landing_p_div}>
                     <p>Aqui encontraras tus pokemons favoritos, podras conocer sus stats,
-                        sus typos y mas. Vamos a divertirnos!</p>
+                        sus tipos y mas. <br /><b>Vamos a divertirnos!</b></p>
                 </div>
-                <Link to='/home'><button className={style.landing_text_div_homeButton}>home</button></Link>
+                <Link to='/home'><button className={style.landing_text_div_homeButton}>GO</button></Link>
                 
             </div>
         

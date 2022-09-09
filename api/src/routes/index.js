@@ -15,7 +15,18 @@ router.get('/pokemons', async (req, res)=>{
     if (name) {
         try {
             const { data } = await axios(`https://pokeapi.co/api/v2/pokemon/${ name }`)
-            return res.json(data);
+            return res.json({
+                id: data.id,
+                name: data.name,
+                types: data.types.map(t => t.type.name), // arreglo contiene type
+                image: data.sprites.other.dream_world.front_default,
+                height: data.height,
+                weight: data.weight,
+                hp: data.stats.find(e => e.stat.name === 'hp').base_stat,
+                attack: data.stats.find(e => e.stat.name === 'attack').base_stat,
+                defense: data.stats.find(e => e.stat.name === 'defense').base_stat,
+                speed: data.stats.find(e => e.stat.name === 'speed').base_stat
+            });
             
         } catch (error) {
             const pokemonFind = await Pokemon.findOne({ where: {name: name}});
@@ -38,7 +49,13 @@ router.get('/pokemons', async (req, res)=>{
                 id: p.data.id,
                 name: p.data.name,
                 types: p.data.types.map(t => t.type.name),
-                image: p.data.sprites.other.dream_world.front_default
+                image: p.data.sprites.other.dream_world.front_default,
+                height: p.data.height,
+                weight: p.data.weight,
+                hp: p.data.stats.find(e => e.stat.name === 'hp').base_stat,
+                attack: p.data.stats.find(e => e.stat.name === 'attack').base_stat,
+                defense: p.data.stats.find(e => e.stat.name === 'defense').base_stat,
+                speed: p.data.stats.find(e => e.stat.name === 'speed').base_stat
             }
         })
 
