@@ -1,0 +1,34 @@
+.input{
+    display: flex; 
+    justify-content: space-between;
+    margin-top: 1px;
+}
+
+.form{
+    display:flex;
+    flex-direction:column;
+    width: 400px; 
+    margin: auto;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.span {
+    font-weight:bold;
+    width: 100%; 
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    color: red;
+    font-size: 12px;
+    padding-right: 10px;
+    align-items: center;
+}

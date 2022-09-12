@@ -1,4 +1,4 @@
-import { SET_POKEMONS, CLEAR_SEARCH, GET_ALL_POKEMONS, SEARCH_POKEMON } from "./actions.js";
+import { SET_POKEMONS, CLEAR_DISPLAY, GET_ALL_POKEMONS, SEARCH_POKEMON, GET_TYPES, CREATE_POKEMON } from "./actions.js";
 
 const stateInitial = {};
 
@@ -9,6 +9,12 @@ export default function rootReducer (state=stateInitial, action){
                 ...JSON.parse(JSON.stringify(state)),
                 pokemons: action.payload,
                 pokemonsDisplay: action.payload
+            }
+
+        case GET_TYPES:
+            return {
+                ...JSON.parse(JSON.stringify(state)),
+                pokemonsTypes: action.payload
             }
 
         case SET_POKEMONS:
@@ -23,7 +29,13 @@ export default function rootReducer (state=stateInitial, action){
                 pokemonsDisplay: action.payload // recordar que en seccionPolemon aplicamos .slice por eso []
             }
 
-        case CLEAR_SEARCH:
+        case CLEAR_DISPLAY:
+            return {
+                ...JSON.parse(JSON.stringify(state)),
+                pokemonsDisplay: []
+            }
+
+        case CREATE_POKEMON:
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 pokemonsDisplay: []

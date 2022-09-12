@@ -10,9 +10,9 @@ export default function CardPokemon(props){
         <Link style={{'textDecoration':'none'}} to={`/pokemons/${props.id}`}>
             <div className={`${style.align} ${style.bg}`} >
                 <div>
-                    <h2>{props.name}</h2>
+                    <h2>{props.name.toUpperCase()}</h2>
                     <ul>
-                        {props.types.map( (t,i) => <li key={i}>{t}</li>)}
+                        {props.Types.map( (t,i) => <li key={i}>{t.name}</li>)}
                     </ul>
                 </div>
                 <div>

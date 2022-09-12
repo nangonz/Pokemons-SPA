@@ -12,7 +12,7 @@ export default function SeccionPokemons(props){
     const pokemonsDisplay = useSelector( state => state.pokemonsDisplay);
     const [index, setIndex] = useState(0);
     const [pag, setPag] = useState();
-    const CardsPerPag= 12;
+    const layoutSeccion= 12;
 
     useEffect(()=>{
         if(!pokemons){
@@ -25,11 +25,15 @@ export default function SeccionPokemons(props){
 
 
     useEffect(()=>{
-        setPag(Math.ceil(pokemonsDisplay?.length/CardsPerPag))
+        const newPag = Math.ceil(pokemonsDisplay?.length/layoutSeccion);
+        if(newPag < pag){
+            setIndex(0)
+        }
+        setPag(newPag)
     }, [pokemonsDisplay, pag]);
 
 
-    function numberOfPag (){
+    function paging(){
         const arrButton = [];
         for(let i=1; i<=pag ; i++){
             arrButton.push(i);
@@ -38,16 +42,18 @@ export default function SeccionPokemons(props){
     };
 
     const handlePrev = () =>{
-        setIndex((prevState)=> prevState - CardsPerPag);
+        setIndex((prevState)=> prevState - layoutSeccion);
     };
 
     const handlePag = (i) =>{
-        setIndex(i * CardsPerPag);
+        setIndex(i * layoutSeccion);
     };
 
     const handleNext = () =>{
-        setIndex(prevState=> prevState + CardsPerPag)
+        setIndex(prevState=> prevState + layoutSeccion)
     }
+
+    console.log(index, pag)
 
 
     return(
@@ -55,13 +61,13 @@ export default function SeccionPokemons(props){
             <div className={style.seccion}>
                 { pokemons?.error? <span>{pokemons.error}</span>
                 :pokemonsDisplay?.error? <span>Pokemon not found, try again!</span>
-                :pokemonsDisplay?.length? pokemonsDisplay.slice(index, index+CardsPerPag).map(pokemon => <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name.toUpperCase()} types={pokemon.types} image={pokemon.image} />)
+                :pokemonsDisplay?.length? pokemonsDisplay.slice(index, index+layoutSeccion).map(pokemon => <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} Types={pokemon.Types} image={pokemon.image} />)
                 : <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" /> }
             </div>
 
             { <button disabled={index>0? false: true} onClick={handlePrev}>PREV</button> }
 
-            {numberOfPag().map((el, i) => <button className={index+CardsPerPag === el*CardsPerPag? style.active:''} key={i} onClick={()=> handlePag(i)} >{el}</button>)}
+            {paging().map((el, i) => <button className={index+layoutSeccion === el*layoutSeccion? style.active:''} key={i} onClick={()=> handlePag(i)} >{el}</button>)}
 
             { <button disabled={pokemonsDisplay?.length - index > 12? false: true } onClick={handleNext}>NEXT</button> }
 
