@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAllPokemons } from '../redux/actions';
 import landingImage from '../images/pokemonEditado.png';
+import charizard from '../images/Charicorner.png'
+import ashPokemons from '../images/ashPokemons.png'
+
+
+
+
 import style from './Landing.module.css';
 
 
@@ -30,6 +36,10 @@ export default function Landing(props){
                 <Link to='/home'><button className={style.landing_text_div_homeButton}>GO</button></Link>
                 
             </div>
+            <img className={style.ChariImg} src={charizard} alt="" />
+            <img className={style.ashPokemons} src={ashPokemons} alt="" />
+            
+
         
         </div>
     )

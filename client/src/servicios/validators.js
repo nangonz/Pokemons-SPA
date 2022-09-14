@@ -3,7 +3,7 @@ export default function validate (creation) {
 
     if (!creation.name) {
         error.name = 'required'
-    } else if (!/^[a-z]*$/.test(creation.name)){
+    } else if (!/^[A-Za-z]*$/.test(creation.name)){
         error.name = 'invalid'
     };
 

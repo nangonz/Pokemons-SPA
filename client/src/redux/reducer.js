@@ -20,7 +20,7 @@ export default function rootReducer (state=stateInitial, action){
         case SET_POKEMONS:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                pokemonsDisplay: [...JSON.parse(JSON.stringify(state.pokemons))]
+                pokemonsDisplay: JSON.parse(JSON.stringify(state.pokemons))
         }
 
         case SEARCH_POKEMON:
@@ -38,7 +38,7 @@ export default function rootReducer (state=stateInitial, action){
         case CREATE_POKEMON:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                pokemonsDisplay: []
+                pokemonsDisplay: action.payload
             }
 
         default: return state;
