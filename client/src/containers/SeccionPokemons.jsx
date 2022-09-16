@@ -25,7 +25,7 @@ export default function SeccionPokemons(props){
             dispatch(setPokemons())
         }
         
-    }, [dispatch]);
+    }, [dispatch, isFilterOpen]);
 
 
     useEffect(()=>{
