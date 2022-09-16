@@ -40,7 +40,7 @@ router.get('/pokemons', async (req, res)=>{
     }
 
     try {
-        const { data: {results: pokemons}} = await axios('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40');
+        const { data: {results: pokemons}} = await axios('https://pokeapi.co/api/v2/pokemon?limit=40');
 
         const promises = pokemons.map(p => axios(p.url)); // arreglo de promesas
         const pokeApi = await Promise.all(promises); // Los datos que quiero estan en data de la respuesta ax
@@ -56,7 +56,8 @@ router.get('/pokemons', async (req, res)=>{
                 hp: p.data.stats.find(e => e.stat.name === 'hp').base_stat,
                 attack: p.data.stats.find(e => e.stat.name === 'attack').base_stat,
                 defense: p.data.stats.find(e => e.stat.name === 'defense').base_stat,
-                speed: p.data.stats.find(e => e.stat.name === 'speed').base_stat
+                speed: p.data.stats.find(e => e.stat.name === 'speed').base_stat,
+                originals: true // Propiedad para poder filtrar entre creados y originales
             }
         })
         

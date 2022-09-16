@@ -5,6 +5,7 @@ export const SEARCH_POKEMON = "SEARCH_POKEMON";
 export const CLEAR_DISPLAY = "CLEAR_DISPLAY";
 export const GET_TYPES = "GET_TYPES";
 export const CREATE_POKEMON = "CREATE_POKEMON"
+export const FILTER_AND_ORDER = "FILTER_AND_ORDER"
 
 
 export const getAllPokemons = () => dispatch =>{
@@ -54,3 +55,7 @@ export const clearDisplay = () =>{
 export const setPokemons = () =>{
     return {type: SET_POKEMONS}
 };
+
+export const filterAndOrder = (pokemons) =>{
+    return {type:FILTER_AND_ORDER, payload: pokemons}
+}

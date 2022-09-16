@@ -1,6 +1,5 @@
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Nav from './containers/Nav';
 import SeccionPokemons from './containers/SeccionPokemons';
 import Landing from './components/Landing';
 import PageNotFound from './containers/PageNotFound';
@@ -19,7 +18,6 @@ function App() {
         </Route>
 
         <Route exact path='/home'>
-          <Nav/>
           <SeccionPokemons/>
         </Route> 
 

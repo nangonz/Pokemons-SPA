@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardPokemon from '../components/CardPokemon';
 import { getAllPokemons, setPokemons } from "../redux/actions";
 import style from './SeccionPokemons.module.css';
+import pikachuGif from '../images/nan1.gif'
+import Nav from "./Nav";
+import Filter from "../components/Filter";
 
 
 
@@ -12,6 +15,7 @@ export default function SeccionPokemons(props){
     const pokemonsDisplay = useSelector( state => state.pokemonsDisplay);
     const [index, setIndex] = useState(0);
     const [pag, setPag] = useState();
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const layoutSeccion= 12;
 
     useEffect(()=>{
@@ -53,16 +57,20 @@ export default function SeccionPokemons(props){
         setIndex(prevState=> prevState + layoutSeccion)
     }
 
-    console.log(index, pag)
-
 
     return(
         <>
-            <div className={style.seccion}>
-                { pokemons?.error? <span>{pokemons.error}</span>
-                :pokemonsDisplay?.error? <span>Pokemon not found, try again!</span>
-                :pokemonsDisplay?.length? pokemonsDisplay.slice(index, index+layoutSeccion).map(pokemon => <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} Types={pokemon.Types} image={pokemon.image} />)
-                : <img  src='https://i.gifer.com/origin/0d/0dea0c59cbf084d981fc5b55643cb6e6.gif' className={style.loading} alt="" /> }
+            <Nav showFilter={isFilterOpen} onFilter={()=> setIsFilterOpen(!isFilterOpen)} />
+            <div className={style.flex}>
+                <div>
+                    {isFilterOpen && <Filter/>}
+                </div>
+                <div className={style.seccion}>
+                    { pokemons?.error? <span>{pokemons.error}</span>
+                    :pokemonsDisplay?.error? <span>Pokemon not found, try again!</span>
+                    :pokemonsDisplay?.length? pokemonsDisplay.slice(index, index+layoutSeccion).map(pokemon => <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} Types={pokemon.Types} image={pokemon.image} />)
+                    : <img src={pikachuGif} className={style.loading} alt="" /> }
+                </div>
             </div>
 
             { <button disabled={index>0? false: true} onClick={handlePrev}>PREV</button> }

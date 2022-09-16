@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { clearDisplay, createPokemon, getAllPokemons, getTypes } from "../redux/actions";
 import Modal from "./Modal";
 import style from "./FormCreate.module.css";
-import validate from "../servicios/validators";
+import validate from "../services/validators";
 import pokemonMasterOak from "../images/pokemonMasterOak.png";
 import pokedexTopHalf from "../images/pokedexTopHalf.png";
 import pokedexBottomHalf from "../images/pokedexBottomHalf.png";
