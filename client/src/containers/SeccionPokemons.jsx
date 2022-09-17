@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import CardPokemon from '../components/CardPokemon';
-import { getAllPokemons, setPokemons } from "../redux/actions";
+import { getAllPokemons, setPokemons, clearDisplay } from "../redux/actions";
 import style from './SeccionPokemons.module.css';
 import pikachuGif from '../images/nan1.gif'
 import Nav from "./Nav";
@@ -24,8 +24,13 @@ export default function SeccionPokemons(props){
         } else {
             dispatch(setPokemons())
         }
+
+        return () => {
+            dispatch(clearDisplay())
+        }
         
-    }, [dispatch, isFilterOpen]);
+    }, [dispatch]);
+
 
 
     useEffect(()=>{
@@ -35,6 +40,7 @@ export default function SeccionPokemons(props){
         }
         setPag(newPag)
     }, [pokemonsDisplay, pag]);
+
 
 
     function paging(){

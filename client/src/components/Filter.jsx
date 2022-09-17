@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getTypes, filterAndOrder } from "../redux/actions"
+import { getTypes, filterAndOrder, setPokemons } from "../redux/actions"
 import orderService from "../services/sort.js"
 import filterService from "../services/filter.js"
 import style from "./Filter.module.css"
@@ -19,6 +19,11 @@ export default function Filter(){
         if(!pokemonsTypes){
             dispatch(getTypes())
         }
+        if(allPokemons){
+            dispatch(setPokemons())
+        }
+        return ()=>dispatch(setPokemons())
+
     }, [dispatch])
 
 
@@ -85,6 +90,21 @@ export default function Filter(){
                 </div>
                 <div className={style.input}>
                     <input  type="radio" name="orderBy" value="attack" onChange={(e)=> handleOnChangeOrder(e)}/>attack
+                </div>
+                <div className={style.input}>
+                    <input  type="radio" name="orderBy" value="defense" onChange={(e)=> handleOnChangeOrder(e)}/>defense
+                </div>
+                <div className={style.input}>
+                    <input  type="radio" name="orderBy" value="hp" onChange={(e)=> handleOnChangeOrder(e)}/>health points
+                </div>
+                <div className={style.input}>
+                    <input  type="radio" name="orderBy" value="speed" onChange={(e)=> handleOnChangeOrder(e)}/>speed
+                </div>
+                <div className={style.input}>
+                    <input  type="radio" name="orderBy" value="weight" onChange={(e)=> handleOnChangeOrder(e)}/>weight
+                </div>
+                <div className={style.input}>
+                    <input  type="radio" name="orderBy" value="height" onChange={(e)=> handleOnChangeOrder(e)}/>height
                 </div>
 
 

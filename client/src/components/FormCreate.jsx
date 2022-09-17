@@ -80,6 +80,9 @@ export default function FormCreate(props){
 
     const handleOnClose = () =>{
         setIsModalOpen(false)
+        setError({
+            disabled: true
+        })
         dispatch(clearDisplay())
         setCreation((prevState)=>{
             return {
@@ -105,7 +108,7 @@ export default function FormCreate(props){
                     <fieldset className={style.description_fieldset }>
                         <legend >POKEMON DESCRIPTION</legend>
                         
-                        <div className={style.input}><label>Name:</label><span className={style.error}>{error.name}</span><input value={creation.name} name="name" type='text' autoComplete="off" placeholder="Text only..." maxLength='12' onChange={(e)=> handleOnChange(e)}/></div>
+                        <div className={style.input}><label>Name:</label><span className={style.error}>{error.name}</span><input value={creation.name} name="name" type='text' autoComplete="off" placeholder="lowercase text only..." maxLength='12' onChange={(e)=> handleOnChange(e)}/></div>
                         
                         <div className={style.input}><label>Image:</label><span className={style.error}>{error.image}</span><input value={creation.image} name="image" type="url" autoComplete="off" placeholder="image URL..." onChange={(e)=> handleOnChange(e)}/></div>
                         
@@ -142,16 +145,29 @@ export default function FormCreate(props){
 
                 </form>
             </div>
+
+
             <div className={style.oak_img_div} >
                 <img className={style.oak_img} src={pokemonMasterOak} alt="" />
             </div>
+
+
             <div className={style.card_preview_div } >
                 <img className={style.pokedexTopHalf} src={pokedexTopHalf} alt="" />
-                <div className={style.preview_div} >
-                    <h1 style={{"color": "white"}}>PREVIEW</h1>
+                <div style={{"overflow": "hidden"}} className={style.preview_div} >
+                    <div className={style.div_grid_el} ><h1>{creation.name.toUpperCase()}</h1></div>
+                    <div style={{"color": "white", "gridArea": "weight", "backgroundColor": "blue", "width":"100%", "height":"100%", "margin":"0px", "padding":"0px"}}><h1>{creation.weight}</h1></div>
+                    <div style={{"color": "white", "gridArea": "height", "backgroundColor": "yellow", "width":"100%", "height":"100%"}}><h1>{creation.height}</h1></div>
+                    <div style={{"color": "white", "gridArea": "hp", "backgroundColor": "orange", "width":"100%", "height":"100%"}}><h1>{creation.hp}</h1></div>
+                    <div style={{"color": "white", "gridArea": "attack", "backgroundColor": "green", "width":"100%", "height":"100%"}}><h1>{creation.attack}</h1></div>
+                    <div style={{"color": "white", "gridArea": "defense", "backgroundColor": "pink", "width":"100%", "height":"100%"}}><h1>{creation.defense}</h1></div>
+                    <div style={{"color": "white", "gridArea": "speed", "backgroundColor": "brown", "width":"100%", "height":"100%"}}><h1>{creation.speed}</h1></div>
+                    <div style={{"width": "100%", "height": "100%", "gridArea":"img", "backgroundColor": "blue"}}><img src={creation.image} alt="" /></div>
                 </div>
                 <img className={style.pokedexBottomHalf} src={pokedexBottomHalf} alt="" />
             </div>
+
+
             {isModalOpen && 
                 <Modal onClose={handleOnClose}>
                     {Array.isArray(pokemonsDisplay)? <h1>PROCESANDO...</h1>: pokemonsDisplay? <h1>POKEMON CREATED</h1>:<h1>SOMETHING FAILED</h1>}
