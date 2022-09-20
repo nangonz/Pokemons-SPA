@@ -1,4 +1,4 @@
-import { SET_POKEMONS, CLEAR_DISPLAY, GET_ALL_POKEMONS, SEARCH_POKEMON, GET_TYPES, CREATE_POKEMON, FILTER_AND_ORDER } from "./actions.js";
+import { SET_POKEMONS, CLEAR_DISPLAY, GET_ALL_POKEMONS, SEARCH_POKEMON, GET_TYPES, FILTER_AND_ORDER } from "./actions.js";
 
 const stateInitial = {};
 
@@ -33,12 +33,6 @@ export default function rootReducer (state=stateInitial, action){
             return {
                 ...JSON.parse(JSON.stringify(state)),
                 pokemonsDisplay: []
-            }
-
-        case CREATE_POKEMON:
-            return {
-                ...JSON.parse(JSON.stringify(state)),
-                pokemonsDisplay: action.payload
             }
 
         case FILTER_AND_ORDER:

@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { clearDisplay, createPokemon, getAllPokemons, getTypes } from "../redux/actions";
+import { clearDisplay, getAllPokemons, getTypes } from "../redux/actions";
+import PreviewCardCreation from "./PreviewCardCreation";
 import Modal from "./Modal";
 import style from "./FormCreate.module.css";
 import validate from "../services/validators";
-import pokemonMasterOak from "../images/pokemonMasterOak.png";
-import pokedexTopHalf from "../images/pokedexTopHalf.png";
-import pokedexBottomHalf from "../images/pokedexBottomHalf.png";
+import oak from "../images/OAK01.png"
+
+
 
 
 export default function FormCreate(props){
 
     const history = useHistory()
     const pokemonsTypes = useSelector(state =>state.pokemonsTypes)
-    const pokemonsDisplay = useSelector(state => state.pokemonsDisplay)
     const dispatch= useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isCreated, setIsCreated] = useState()
     const [error, setError] = useState({
         disabled: true
     })
@@ -32,16 +33,27 @@ export default function FormCreate(props){
         Types: [],
     });
 
+
     useEffect(()=>{
         if(!pokemonsTypes){
             dispatch(getTypes());
         }
-        return ()=> dispatch(getAllPokemons())
     },[dispatch])
+
 
     const handleOnSubmit = (e)=>{
         e.preventDefault();
-        dispatch(createPokemon(creation))
+
+        fetch('http://localhost:3001/pokemons', 
+        {method:'POST', 
+        headers:{'Content-Type': 'application/json'}, 
+        body: JSON.stringify(creation)})
+        .then(response => response.json())
+        .then(data =>{
+            setTimeout(()=> setIsCreated(data), 2000)
+        })
+
+        dispatch(getAllPokemons())
     }
 
     const handleOnChange = (e)=>{
@@ -80,6 +92,7 @@ export default function FormCreate(props){
 
     const handleOnClose = () =>{
         setIsModalOpen(false)
+        setIsCreated()
         setError({
             disabled: true
         })
@@ -99,6 +112,7 @@ export default function FormCreate(props){
             }
         })
     }
+
 
 
     return (
@@ -148,31 +162,22 @@ export default function FormCreate(props){
 
 
             <div className={style.oak_img_div} >
-                <img className={style.oak_img} src={pokemonMasterOak} alt="" />
+                <img className={style.oak_img} src={oak} alt="" />
             </div>
 
-
-            <div className={style.card_preview_div } >
-                <img className={style.pokedexTopHalf} src={pokedexTopHalf} alt="" />
-                <div style={{"overflow": "hidden"}} className={style.preview_div} >
-                    <div className={style.div_grid_el} ><h1>{creation.name.toUpperCase()}</h1></div>
-                    <div style={{"color": "white", "gridArea": "weight", "backgroundColor": "blue", "width":"100%", "height":"100%", "margin":"0px", "padding":"0px"}}><h1>{creation.weight}</h1></div>
-                    <div style={{"color": "white", "gridArea": "height", "backgroundColor": "yellow", "width":"100%", "height":"100%"}}><h1>{creation.height}</h1></div>
-                    <div style={{"color": "white", "gridArea": "hp", "backgroundColor": "orange", "width":"100%", "height":"100%"}}><h1>{creation.hp}</h1></div>
-                    <div style={{"color": "white", "gridArea": "attack", "backgroundColor": "green", "width":"100%", "height":"100%"}}><h1>{creation.attack}</h1></div>
-                    <div style={{"color": "white", "gridArea": "defense", "backgroundColor": "pink", "width":"100%", "height":"100%"}}><h1>{creation.defense}</h1></div>
-                    <div style={{"color": "white", "gridArea": "speed", "backgroundColor": "brown", "width":"100%", "height":"100%"}}><h1>{creation.speed}</h1></div>
-                    <div style={{"width": "100%", "height": "100%", "gridArea":"img", "backgroundColor": "blue"}}><img src={creation.image} alt="" /></div>
-                </div>
-                <img className={style.pokedexBottomHalf} src={pokedexBottomHalf} alt="" />
-            </div>
+            <PreviewCardCreation creation={creation} Types={pokemonsTypes}/>
+            
 
 
             {isModalOpen && 
                 <Modal onClose={handleOnClose}>
-                    {Array.isArray(pokemonsDisplay)? <h1>PROCESANDO...</h1>: pokemonsDisplay? <h1>POKEMON CREATED</h1>:<h1>SOMETHING FAILED</h1>}
-                    <button onClick={()=>history.push('/home')}>GO HOME</button>
-                    <button onClick={handleOnClose}>{pokemonsDisplay? "CREATE ANOTHER": "TRY AGAIN"}</button>
+
+                    {isCreated?.ok?<h1>POKEMON CREATED</h1>
+                    :isCreated?.error? <h1>SOMETHING FAILED</h1>
+                    : <h1>PROCESS...</h1>}
+
+                    {isCreated && <button onClick={()=>history.push('/home')}>GO HOME</button>}
+                    {isCreated && <button onClick={handleOnClose}>{isCreated?.ok?"CREATE ANOTHER": "TRY AGAIN"}</button>}
 
                 </Modal>
             }

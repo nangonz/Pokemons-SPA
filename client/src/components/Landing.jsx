@@ -32,6 +32,9 @@ export default function Landing(props){
                 <div className={style.landing_p_div}>
                     <p>Aqui encontraras tus pokemons favoritos, podras conocer sus stats,
                         sus tipos y mas. <br /><b>Vamos a divertirnos!</b></p>
+                    <svg>
+                        <rect x="0" y="0" fill="none"></rect>
+                    </svg>
                 </div>
                 <Link to='/home'><button className={style.landing_text_div_homeButton}>GO</button></Link>
                 

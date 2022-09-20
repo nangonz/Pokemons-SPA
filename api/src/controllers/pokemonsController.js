@@ -108,7 +108,7 @@ const postPokemon = async (req, res) =>{
             res.json({ok: true})
             
         } catch (error) {
-            res.json({ok: false})
+            res.json({error: error.message})
             
         }
     }
