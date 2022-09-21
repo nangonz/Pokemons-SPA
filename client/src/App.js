@@ -29,7 +29,7 @@ function App() {
         </Route> 
 
         <Route>
-          <PageNotFound/>
+          <PageNotFound toggle={()=>{}}/>
         </Route> 
 
       </Switch>

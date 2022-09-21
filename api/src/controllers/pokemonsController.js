@@ -25,7 +25,7 @@ const getPokemons = async (req, res) =>{
             if (pokemonFind) {
                 return res.json([pokemonFind]);
             } else {
-                return res.status(404).json({error: 'Pokemon not found'});
+                return res.status(404).json({error: 'Pokemon not Found'});
             }
             
         }
@@ -84,7 +84,7 @@ const getPokemonsById = async (req, res) =>{
             const pokeFind = await Pokemon.findByPk(idPokemon, {include: Type});
             if(pokeFind) return res.json(pokeFind)
         }
-        return res.status(404).send("Pokemon not Found");
+        return res.status(404).json({error: "Pokemon not Found"});
     }
 
 }
@@ -105,10 +105,10 @@ const postPokemon = async (req, res) =>{
         try {
             const pokemonCreated = await Pokemon.create(newPokemon);
             await pokemonCreated.setTypes(newPokemon.Types)
-            res.json({ok: true})
+            res.status(201).json({ok: true})
             
         } catch (error) {
-            res.json({error: error.message})
+            res.status(400).json({error: error.message})
             
         }
     }

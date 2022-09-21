@@ -1,7 +1,7 @@
 import style from "./PreviewCardCreation.module.css";
 import pokedexTopHalf from "../images/pokedexTopHalf.png";
 import pokedexBottomHalf from "../images/pokedexBottomHalf.png";
-import whosThatPokemon from "../images/whosThatpng.png"
+import whosThatPokemon from "../images/whos-that.gif"
 import { useSelector } from "react-redux";
 
 

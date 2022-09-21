@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       validate:{
         isLowerCase(value){
           if(value !== value.toLowerCase()){
-            throw new Error ('Only lower case names are allowed')
+            throw new Error ('only lower case')
           }
         }
       }
