@@ -26,12 +26,12 @@ export default function PreviewCardCreation({creation}){
             <div className={style.preview_div} >
                 <div className={style.gridArea_nameDiv} ><span>{creation.name.toUpperCase()|| "Pokemon's name"} </span></div>
                 <div className={style.gridArea_weightDiv}>
-                    <span style={{"fontSize": "35px"}} >{creation.weight || 10}</span>
+                    <span style={{"fontSize": "35px"}} >{creation.weight? creation.weight <= 1000? creation.weight: "~": "~"}</span>
                     <span>⚖</span>
                 </div>
                 <div className={style.gridArea_heightDiv}>
-                    <span style={{"fontSize": "35px"}}>{creation.height || 1}</span>
-                    <span style={{"fontSize": "25px"}}>📏</span>
+                    <span style={{"fontSize": "35px"}}>{creation.height? creation.height <= 10? creation.height: "~": "~"}</span>
+                    <span style={{"fontSize": "18px"}}>📏</span>
                 </div>
                 <div className={style.gridArea_hpDiv}>
                     <span style={{"fontSize": "35px"}}>{creation.hp}</span>

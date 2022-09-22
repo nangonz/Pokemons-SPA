@@ -47,7 +47,7 @@ export default function Filter(){
 
 
     useEffect(()=>{
-        if(allPokemons){
+        if(Array.isArray(allPokemons)){
             let pokemons = [...JSON.parse(JSON.stringify(allPokemons))]
             pokemons = filterService(pokemons, filter)
 

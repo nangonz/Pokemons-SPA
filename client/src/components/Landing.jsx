@@ -36,7 +36,7 @@ export default function Landing(props){
                         <rect x="0" y="0" fill="none"></rect>
                     </svg>
                 </div>
-                <Link to='/home'><button className={style.landing_text_div_homeButton}>GO</button></Link>
+                <Link to='/home'><button className={style.landing_text_div_homeButton}>HOME</button></Link>
                 
             </div>
             <img className={style.fireGif} src={pokefire} alt="" />

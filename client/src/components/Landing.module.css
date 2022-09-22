@@ -51,10 +51,10 @@
 
 .landing_text_div_homeButton {
     position:absolute;
-    left: calc(50% - 80px);
+    left: calc(50% - 100px);
     bottom: 16%;
     font-size: 24px;
-    width: 18%;
+    width: 25%;
     height: 5vh;
     text-align: center;
     cursor: pointer;

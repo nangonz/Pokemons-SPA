@@ -24,6 +24,7 @@
 .grid{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    margin-left: 20px;
 }
 
 .span {
@@ -71,8 +72,25 @@
     background-color: rgba(251, 0, 0, 0.878);
     color: rgba(255, 255, 255, 0.851);
     box-shadow: 1px 1px 20px 1px rgba(195, 0, 255, 0.379);
+    border-radius: 20PX;
 }
 
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px 10px;
+}
+
+.flexcolum {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px 10px;
+}
 
 
 
