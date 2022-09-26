@@ -22,8 +22,9 @@ export default function Filter(){
         if(allPokemons){
             dispatch(setPokemons())
         }
-        return ()=>dispatch(setPokemons())
-
+        if(Array.isArray(allPokemons)){
+            return ()=>dispatch(setPokemons())
+        }
     }, [dispatch])
 
 

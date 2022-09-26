@@ -6,6 +6,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
+    border-radius: 15px;
     padding: 30px;
     z-index: 1000;
 }
