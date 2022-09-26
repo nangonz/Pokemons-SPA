@@ -5,6 +5,8 @@ import Filter from "../components/Filter";
 import Search from "../components/Search";
 import { clearDisplay, getAllPokemons, setPokemons } from "../redux/actions";
 import style from "./SeccionPokemons.module.css"
+import loadingPikachu from "../images/loadingPikachu.gif"
+import errorPikachu from "../images/404-error-pokegif.gif"
 
 export default function SeccionPokemon(props){
     const dispatch= useDispatch();
@@ -71,15 +73,17 @@ export default function SeccionPokemon(props){
                 </div>
                 <div className={style.seccion}>
                     { pokemons?.error?<span>{pokemons.error}</span> 
-                    :pokemonsDisplay?.error? <span>Pokemon not Found, try again!</span>
+                    :pokemonsDisplay?.error? <div><img src={errorPikachu} alt="errorImg"/><span className={style.span}>Pokemon not found, try again!</span></div>
                     :pokemonsDisplay?.length? pokemonsDisplay.slice(index,index+layoutSeccion).map(pokemon=><CardPokemon key={pokemon.id} id={pokemon.id} image={pokemon.image} Types={pokemon.Types} name={pokemon.name}/>) 
-                    :<span>Cargando</span>}
+                    : <div><img src={loadingPikachu} alt="loadingImg"/><span className={style.span}>loading</span></div>}
+                </div>
+                <div>
+                    {<button disabled={index>0?false:true} onClick={handlePrev}>Prev</button>}
+                    {paging().map((b,i)=><button className={index+layoutSeccion===b*layoutSeccion?style.active:""} key={i} onClick={()=>handlePag(i)}>{b}</button>)}
+                    {<button disabled={pokemonsDisplay?.length-index>12?false:true} onClick={handleNext}>Next</button>}
                 </div>
             </div>
         </div>
-        {<button disabled={index>0?false:true} onClick={handlePrev}>Prev</button>}
-        {paging().map((b,i)=><button className={index+layoutSeccion===b*layoutSeccion?style.active:""} key={i} onClick={()=>handlePag(i)}>{b}</button>)}
-        {<button disabled={pokemonsDisplay?.length-index>12?false:true} onClick={handleNext}>Next</button>}
         </>
     )
 }

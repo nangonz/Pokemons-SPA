@@ -2,23 +2,9 @@ import style from "./PreviewCardCreation.module.css";
 import pokedexTopHalf from "../images/pokedexTopHalf.png";
 import pokedexBottomHalf from "../images/pokedexBottomHalf.png";
 import whosThatPokemon from "../images/whos-that.gif"
-import { useSelector } from "react-redux";
 
 
 export default function PreviewCardCreation({creation}){
-    const pokemonsTypes = useSelector(state => state.pokemonsTypes)
-
-    function typesNames(arr){
-        let names=[]
-        if(arr.length > 0){
-            for(let el of arr){
-                const obj = pokemonsTypes.find(({id})=> id===Number(el))
-                names.push(obj.name)
-            }
-        }
-        return names;
-    }
-
     
     return (
         <div className={style.flex}>
@@ -54,7 +40,7 @@ export default function PreviewCardCreation({creation}){
                         <img className={style.gif} src={creation.image || whosThatPokemon} alt="" />
                     </div>
                     <div className={style.gridArea_typesDiv} >
-                        {creation.Types.length>0 && creation.Types.length<3? typesNames(creation.Types).map((el,i)=> <div key={i}>{el.toUpperCase()}</div>) : <span>"up to two types"</span>}
+                        {creation.Types.length>0 && creation.Types.length<3? creation.Types.map(type=> <div key={type.id}>{type.name.toUpperCase()}</div>) : <span>"up to two types"</span>}
                     </div>
                 </div>
                 <img className={style.pokedexBottomHalf} src={pokedexBottomHalf} alt="" />

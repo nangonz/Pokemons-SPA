@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import pokeball from "../images/pokeball.svg";
+import pokeball from "../images/whos-that.gif";
 import style from "./CardPokemon.module.css";
 
 export default function CardPokemon(props){

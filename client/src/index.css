@@ -25,30 +25,27 @@ button {
   text-align: center;
   padding: 2px 20px;
   margin: 5px;
-  background-color: #8544e8;
-  background-color: #c72910;
-  border-radius: 5px;
+  background-color: var(--navbar-dark-mode);
   color: #fff;
   text-decoration: none;
   border: none;
-  height: 25px;
+  height: 1.875rem;
   cursor: pointer;
-  letter-spacing: 1px;
   overflow: hidden;
   transition: 0.5s;
+  border-radius: 3.125rem;
 }
 
 
 button:disabled {
-  background-color: rgb(241, 240, 241);
-  color: rgb(217, 215, 220);
+  background-color: rgba(75, 61, 61, 0.934);
+  color: rgb(112, 74, 74);
   cursor: not-allowed;
 }
 
-button:hover {
-  background-color: #8544e8;
-  /* background-color: #c72910; */
-
+button:enabled:hover {
+  background-color: #c72910;
+  box-shadow: 0 0 20px 1px rgba(255,0,0,0.5);
 }
 
 
