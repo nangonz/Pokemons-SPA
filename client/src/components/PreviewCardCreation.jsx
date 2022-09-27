@@ -5,13 +5,15 @@ import whosThatPokemon from "../images/whos-that.gif"
 
 
 export default function PreviewCardCreation({creation}){
-    
+
     return (
         <div className={style.flex}>
             <div className={style.card_preview_div }>
-                <img className={style.pokedexTopHalf} src={pokedexTopHalf} alt="" />
+                <img className={style.pokedexTopHalf} src={pokedexTopHalf} alt="pokedexTop" />
                 <div className={style.preview_div} >
-                    <div className={style.gridArea_nameDiv} ><span>{creation.name.toUpperCase()|| "Pokemon's name"} </span></div>
+                    <div className={style.gridArea_nameDiv} >
+                        <span>{creation.name.toUpperCase()|| "Pokemon's name"} </span>
+                    </div>
                     <div className={style.gridArea_weightDiv}>
                         <span style={{"fontSize": "35px"}} >{creation.weight? creation.weight <= 1000? creation.weight: "~": "~"}</span>
                         <span>⚖</span>
@@ -37,13 +39,15 @@ export default function PreviewCardCreation({creation}){
                         <span style={{"fontSize": "25px"}}>⚡</span>
                     </div>
                     <div className={style.gridArea_imgDiv}>
-                        <img className={style.gif} src={creation.image || whosThatPokemon} alt="" />
+                        <img className={style.gif} src={creation.image || whosThatPokemon} alt="whos that Pokemon?" />
+
                     </div>
                     <div className={style.gridArea_typesDiv} >
-                        {creation.Types.length>0 && creation.Types.length<3? creation.Types.map(type=> <div key={type.id}>{type.name.toUpperCase()}</div>) : <span>"up to two types"</span>}
+                        {creation.Types.length>0 && creation.Types.length<3? creation.Types.map((type, i) => <div key={i}>{type.name.toUpperCase()}</div>) : <span>"up to two types"</span>}
                     </div>
+
                 </div>
-                <img className={style.pokedexBottomHalf} src={pokedexBottomHalf} alt="" />
+                <img className={style.pokedexBottomHalf} src={pokedexBottomHalf} alt="pokedexBottom" />
             </div>
         </div>
     )

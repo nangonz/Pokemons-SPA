@@ -44,8 +44,13 @@ export default function FormCreate(props){
         
         e.preventDefault();
 
+        const newPokemon = {
+            ...creation,
+            Types: creation.Types.map(type=>type.id)
+        }
+
         fetch(`http://localhost:3001/pokemons`, {method:"POST", headers: {
-        'Content-Type': 'application/json'}, body: JSON.stringify(creation)})
+        'Content-Type': 'application/json'}, body: JSON.stringify(newPokemon)})
         .then(response=> response.json())
         .then(data => {
             setTimeout(()=>setIsCreated(data), 3000) 
