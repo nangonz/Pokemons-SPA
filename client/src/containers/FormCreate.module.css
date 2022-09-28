@@ -89,6 +89,7 @@
     margin-top: 1.5625rem;
     display: grid;
     width: 90vw;
+    min-height: 100vh;
     /* grid-template-columns: repeat(3, minmax(15vw,30vw)); */
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
     /* grid-template-rows: auto; */

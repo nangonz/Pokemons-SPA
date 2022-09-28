@@ -5,6 +5,7 @@ import PageNotFound from './containers/PageNotFound';
 import PokemonDetail from './containers/PokemonDetail';
 import FormCreate from './containers/FormCreate';
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -20,19 +21,22 @@ function App() {
         <Route exact path='/home'>
           <Nav/>
           <SeccionPokemons/>
+          <Footer/>
         </Route> 
 
         <Route exact path='/create'>
           <Nav/>
           <FormCreate/>
+          <Footer/>
         </Route> 
 
-        <Route exact path='/pokemons/:idPokemon' render={({match})=> <><Nav/><PokemonDetail match={match}/></>}>
+        <Route exact path='/pokemons/:idPokemon' render={({match})=> <><Nav/><PokemonDetail match={match}/><Footer/></>}>
         </Route> 
 
         <Route>
           <Nav/>
-          <PageNotFound toggle={()=>{}}/>
+          <PageNotFound/>
+          <Footer/>
         </Route> 
 
       </Switch>

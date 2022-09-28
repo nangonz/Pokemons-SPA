@@ -59,16 +59,16 @@ export default function SeccionPokemon(props){
     return (
         <>
         <div className={style.flex}>
-            <div>
-                {isFilterOpen &&
-                <Filter />
+            
+                {isFilterOpen && pokemonsDisplay &&
+                <div className={style.filter}><Filter /></div>
                 }
-            </div>
+            
             <div className={style.flexcolum}>
                 <div className={style.fsnav}>
-                    <button onClick={()=>setIsFilterOpen(!isFilterOpen)}>
+                    {pokemonsDisplay?.length>1 || isFilterOpen? <button onClick={()=>setIsFilterOpen(!isFilterOpen)}>
                         {isFilterOpen? "Close Filter" : "Filter / Sort" }
-                    </button>
+                    </button>: <></>}
                     <Search />
                 </div>
                 <div className={style.seccion}>
