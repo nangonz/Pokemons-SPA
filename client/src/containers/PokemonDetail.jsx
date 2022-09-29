@@ -13,7 +13,7 @@ export default function PokemonDetail({match}){
     
     useEffect(()=>{
         if(!pokemonFind){
-            fetch(`http://localhost:3001/pokemons/${idPokemon}`)
+            fetch(`${process.env.REACT_APP_API}/pokemons/${idPokemon}`)
             .then(response=>response.json())
             .then(data=>setPokemonDetail(data))
             .catch(error=>console.log(error))
@@ -23,17 +23,15 @@ export default function PokemonDetail({match}){
     },[pokemonFind, idPokemon])
 
     return (
-        <div style={{marginBottom: "7rem"}} >
+        <div className={style.container} >
             <span className={style.id}>{pokemonDetail.id}</span>
             <img className={style.imageDetailLeft} src={pokemonDetail.image} alt="pokemonBg"/>
-            <div className={style.flex}>
-                <div className={style.detail}>
-                    {pokemonDetail?.error?
-                    <div><img className={style.gif} src={errorPikachu} alt="error"/><span className={style.span}>Pokemon ID not found, try again!</span></div>
-                    :pokemonDetail? <PreviewCardCreation creation={{...pokemonDetail}}/>
-                    :<div><img className={style.gif} src={loadingPikachu} alt="loading"/><span className={style.span}>loading</span></div>}
-                </div>
-            </div>
+            
+            {pokemonDetail?.error?
+            <div><img className={style.gif} src={errorPikachu} alt="error"/><span className={style.span}>Pokemon ID not found, try again!</span></div>
+            :pokemonDetail? <PreviewCardCreation creation={{...pokemonDetail}}/>
+            :<div><img className={style.gif} src={loadingPikachu} alt="loading"/><span className={style.span}>loading</span></div>}
+           
             <img className={style.imageDetailRight} src={pokemonDetail.image} alt="pokemonBg"/>
         </div>
     )

@@ -44,7 +44,7 @@ export default function SeccionPokemon(props){
 
     useEffect(()=>{
         const newPag= Math.ceil(pokemonsDisplay?.length/cardPerPag)
-        if(newPag<pag){
+        if(newPag<pag || isNaN(newPag)){
             setIndex(0);
         }
         setPag(newPag);
@@ -73,7 +73,7 @@ export default function SeccionPokemon(props){
                 }
             
             <div className={style.flexcolum}>
-                <div className={style.fsnav}>
+                <div className={style.tools}>
                     {pokemonsDisplay?.length>1 || isFilterOpen? <button onClick={()=>setIsFilterOpen(!isFilterOpen)}>
                         {isFilterOpen? "Close Filter" : "Filter / Sort" }
                     </button>: <></>}

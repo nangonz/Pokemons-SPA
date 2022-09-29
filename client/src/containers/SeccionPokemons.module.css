@@ -5,7 +5,7 @@
     min-height: 100vh;
     background: #232323;
     overflow: hidden;
-    padding: 6.25rem 1.25rem;
+    padding: 6.25rem 1.25rem; 
     box-sizing: border-box;
 }
 
@@ -31,12 +31,19 @@
     clip-path: circle(65% at 100% -20%);
 }
 
+.filter{
+    background-color: var(--navbar-dark-mode);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    margin-left: 0.625rem;
+    margin-top: 1.5rem;
+}
 
 .flex {
+    margin-top: 1.325rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin-top: 3.125rem;
     margin-bottom: 7rem;
 }
 
@@ -49,7 +56,7 @@
     margin-top: 1.25rem;
 }
 
-.fsnav{
+.tools{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,34 +71,39 @@
     place-content: center;
     background-color: none;
     margin: 0 auto;
-    padding: 1rem;
-    border-radius: 2rem;
+    padding: 1em;
+    border-radius: 2em;
     /* box-shadow: 2px 3px 10px 10px rgb(130, 68, 232);
     border: 5px solid rgb(140, 70, 250); */
     max-width: 70vw;
 }
 
-.active {
-    background-color: yellow;
-    color: black;
-    border: 0,0625rem solid rgb(140, 70, 250);
-}
-
-.seccion img {
+.seccion img{
     max-width: 20rem;
 }
-
 .span{
     display: block;
     letter-spacing: 5px;
-    color: #ffffff;
-    border-top: 1px solid #ffffff ;
+    color: #fff;
+    border-top: 1px solid #fff;
 }
 
-.filter{
-    background-color: var(--navbar-dark-mode);
-    border-radius: 1.25rem;
-    padding: 1.25rem;
-    margin-left: 0.625rem;
-    margin-top: 1.5rem;
+.active {
+    background-color: yellow;
+    color: black;
+    box-shadow: 0 0 20px 1px rgba(246, 255, 0, 0.5);
+    font-weight: bold;
+}
+
+@media (max-width: 900px){
+    .flex {
+        flex-direction: column;
+        margin-top: 1.325rem;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 7rem;
+    }
+    .tools{
+        flex-direction: column;
+    }
 }
