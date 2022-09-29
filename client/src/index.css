@@ -9,6 +9,8 @@
 }
 
 body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   position: relative;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -18,7 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(138deg, rgba(137,35,210,1) 13%, rgba(199,13,215,1) 37%, rgba(241,255,0,0.9026961126247374) 92%);
   min-height: 100vh;
-  padding-bottom: 7rem;
 }
 
 code {

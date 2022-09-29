@@ -35,7 +35,7 @@
 
 .container .card .content{
     position: absolute;
-    bottom: -1.25rem;
+    bottom: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +50,7 @@
 .container .card:hover .content{
     opacity: 1;
     visibility: visible;
-    transform: translateY(-1.875rem);
+    transform: translateY(-0.875rem);
 }
 
 .container .card .content .divtypes{

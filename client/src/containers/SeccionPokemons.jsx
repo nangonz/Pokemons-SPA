@@ -4,6 +4,7 @@ import CardPokemon from "../components/CardPokemon";
 import Filter from "../components/Filter";
 import Search from "../components/Search";
 import { clearDisplay, getAllPokemons, setPokemons } from "../redux/actions";
+import smoothScroll from "../services/smoothScroll";
 import style from "./SeccionPokemons.module.css"
 import loadingPikachu from "../images/loadingPikachu.gif"
 import errorPikachu from "../images/404-error-pokegif.gif"
@@ -15,7 +16,7 @@ export default function SeccionPokemon(props){
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [index, setIndex] = useState(0);
     const [pag, setPag] = useState();
-    const layoutSeccion= 12;
+    const cardPerPag= 12;
 
     function paging(){
         const arrButton = []
@@ -25,15 +26,7 @@ export default function SeccionPokemon(props){
         return arrButton;
     }
 
-    const handleNext = ()=>{
-        setIndex((prevState)=>prevState+layoutSeccion)
-    }
-    const handlePrev = ()=>{
-        setIndex((prevState)=>prevState-layoutSeccion)
-    }
-    const handlePag = (i)=>{
-        setIndex(i*layoutSeccion)
-    }
+    
 
     useEffect(()=>{
         if(!pokemons){
@@ -48,13 +41,28 @@ export default function SeccionPokemon(props){
 
     }, [dispatch]);
 
+
     useEffect(()=>{
-        const newPag= Math.ceil(pokemonsDisplay?.length/layoutSeccion)
+        const newPag= Math.ceil(pokemonsDisplay?.length/cardPerPag)
         if(newPag<pag){
             setIndex(0);
         }
         setPag(newPag);
     }, [pokemonsDisplay]);
+
+
+    const handlePag = (e,i)=>{
+        if(e.target.textContent === 'Next'){
+            setIndex((prevState)=> prevState + cardPerPag)
+        } else if (e.target.textContent === 'Prev'){
+            setIndex((prevState)=> prevState - cardPerPag)
+        } else {
+            setIndex(i*cardPerPag)
+        }
+        if(e.target.offsetTop > 700){
+           smoothScroll(e.target.offsetTop)
+        }
+    }
 
     return (
         <>
@@ -69,18 +77,18 @@ export default function SeccionPokemon(props){
                     {pokemonsDisplay?.length>1 || isFilterOpen? <button onClick={()=>setIsFilterOpen(!isFilterOpen)}>
                         {isFilterOpen? "Close Filter" : "Filter / Sort" }
                     </button>: <></>}
-                    <Search />
+                    <Search filter={()=> setIsFilterOpen(false)}/>
                 </div>
                 <div className={style.seccion}>
                     { pokemons?.error?<span>{pokemons.error}</span> 
                     :pokemonsDisplay?.error? <div><img src={errorPikachu} alt="errorImg"/><span className={style.span}>Pokemon not found, try again!</span></div>
-                    :pokemonsDisplay?.length? pokemonsDisplay.slice(index,index+layoutSeccion).map(pokemon=><CardPokemon key={pokemon.id} id={pokemon.id} image={pokemon.image} Types={pokemon.Types} name={pokemon.name}/>) 
+                    :pokemonsDisplay?.length? pokemonsDisplay.slice(index,index+cardPerPag).map(pokemon=><CardPokemon key={pokemon.id} id={pokemon.id} image={pokemon.image} Types={pokemon.Types} name={pokemon.name}/>) 
                     : <div><img src={loadingPikachu} alt="loadingImg"/><span className={style.span}>loading</span></div>}
                 </div>
                 <div>
-                    {<button disabled={index>0?false:true} onClick={handlePrev}>Prev</button>}
-                    {paging().map((b,i)=><button className={index+layoutSeccion===b*layoutSeccion?style.active:""} key={i} onClick={()=>handlePag(i)}>{b}</button>)}
-                    {<button disabled={pokemonsDisplay?.length-index>12?false:true} onClick={handleNext}>Next</button>}
+                    {<button disabled={index>0?false:true} onClick={(e)=>handlePag(e)}>Prev</button>}
+                    {paging().map((b,i)=><button className={index+cardPerPag===b*cardPerPag?style.active:""} key={i} onClick={(e)=>handlePag(e,i)}>{b}</button>)}
+                    {<button disabled={pokemonsDisplay?.length-index>cardPerPag?false:true} onClick={(e)=>handlePag(e)}>Next</button>}
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ export default function Search(props){
     return (
             <form className={style.searchBar} onSubmit={(e)=>handleSubmit(e)}>
                 <input value={input} onChange={(e)=>handleOnChange(e)} type="search" placeholder="Nombre del Pokemon ..." autoComplete="off" />
-                <button type="submit">{input.length ? "🔍" : "ALL"}</button>
+                <button onClick={props.filter} type="submit">{input.length? "🔍" : "ALL"}</button>
             </form>
     )
 }

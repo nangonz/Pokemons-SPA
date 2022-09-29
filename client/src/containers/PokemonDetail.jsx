@@ -23,7 +23,8 @@ export default function PokemonDetail({match}){
     },[pokemonFind, idPokemon])
 
     return (
-        <>
+        <div style={{marginBottom: "7rem"}} >
+            <span className={style.id}>{pokemonDetail.id}</span>
             <img className={style.imageDetailLeft} src={pokemonDetail.image} alt="pokemonBg"/>
             <div className={style.flex}>
                 <div className={style.detail}>
@@ -34,6 +35,6 @@ export default function PokemonDetail({match}){
                 </div>
             </div>
             <img className={style.imageDetailRight} src={pokemonDetail.image} alt="pokemonBg"/>
-        </>
+        </div>
     )
 }
