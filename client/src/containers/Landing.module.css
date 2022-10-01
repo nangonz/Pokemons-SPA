@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20rem;   
+    margin-left: 20rem;
 }
 
 .flexContent {
@@ -26,7 +26,6 @@
     text-align: left;
     align-items: center;
     gap: 0.625rem;
-    
 }
 
 .flexSpan Span{
@@ -106,7 +105,6 @@
     left: 0%;
     bottom: 0%;
     transform: scaleX(-1);
-
 }
 
 /* MEDIA QUERIES */

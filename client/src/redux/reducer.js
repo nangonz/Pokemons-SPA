@@ -26,7 +26,7 @@ export default function rootReducer (state=stateInitial, action){
         case SEARCH_POKEMON:
             return {
                 ...JSON.parse(JSON.stringify(state)),
-                pokemonsDisplay: action.payload // recordar que en seccionPokemon aplicamos .slice por eso []
+                pokemonsDisplay: action.payload
             }
 
         case CLEAR_DISPLAY:

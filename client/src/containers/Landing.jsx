@@ -21,8 +21,8 @@ export default function Landing(){
     
     return(
         <div className={style.flexContainer}>
-        <img className={style.frameCharizard} src={frameCharizard} alt="frame"></img>
-        <img className={style.framePokemons} src={framePokemons} alt="frame"></img>
+            <img className={style.frameCharizard} src={frameCharizard} alt="frame"></img>
+            <img className={style.framePokemons} src={framePokemons} alt="frame"></img>
 
             <div className={style.flexContent} >
                 <h1 className={style.title}>HI, NICE TO SEE YOU HERE</h1>
