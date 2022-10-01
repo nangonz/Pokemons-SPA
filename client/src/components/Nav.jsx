@@ -3,10 +3,12 @@ import {NavLink } from 'react-router-dom';
 import style from './Nav.module.css'
 import pikachuLogo from '../images/logo.png'
 
-export default function Nav(props) {
+export default function Nav() {
     return (
         <div className={`${style.bg} ${style.align}`}>
-            <NavLink exact to="/"><img className={style.logo} src={pikachuLogo} alt="logoNavHome" /></NavLink>
+            <NavLink exact to="/">
+                <img className={style.logo} src={pikachuLogo} alt="logo PokeApi" />
+            </NavLink>
             <div className={style.align}>
                 <NavLink to='/home'>Home</NavLink>
                 <NavLink to='/create'>Create Pokemon</NavLink>

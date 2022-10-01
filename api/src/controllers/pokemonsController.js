@@ -84,7 +84,7 @@ const getPokemonsById = async (req, res) =>{
             const pokeFind = await Pokemon.findByPk(idPokemon, {include: Type});
             if(pokeFind) return res.json(pokeFind)
         }
-        return res.status(404).json({error: "Pokemon not Found"});
+        return res.status(404).json({error: "no matching ID"});
     }
 
 }

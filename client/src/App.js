@@ -8,7 +8,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 
 
-function App() {
+export default function App() {
   return (
     
     <div className="App">
@@ -43,5 +43,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

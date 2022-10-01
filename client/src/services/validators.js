@@ -20,7 +20,7 @@ export default function validate (creation) {
     };
 
     if(creation.image){
-        if(!/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(creation.image)){
+        if(!/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(creation.image)){ //eslint-disable-line
             error.image = 'invalid';
         }
     }

@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import errorPikachu from "../images/404-error-pokegif.gif"
 
 const PageNotFound = (props) => {

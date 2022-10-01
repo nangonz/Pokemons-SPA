@@ -1,53 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllPokemons, setPokemons } from "../redux/actions";
 import CardPokemon from "../components/CardPokemon";
 import Filter from "../components/Filter";
 import Search from "../components/Search";
-import { clearDisplay, getAllPokemons, setPokemons } from "../redux/actions";
-import smoothScroll from "../services/smoothScroll";
-import style from "./SeccionPokemons.module.css"
-import loadingPikachu from "../images/loadingPikachu.gif"
-import errorPikachu from "../images/404-error-pokegif.gif"
+import smoothScroll from "../services/smoothScroll.js";
+import paging from "../services/paging.js";
+import style from "./SeccionPokemons.module.css";
+import loadingPikachu from "../images/loadingPikachu.gif";
+import errorPikachu from "../images/404-error-pokegif.gif";
 
-export default function SeccionPokemon(props){
-    const dispatch= useDispatch();
-    const pokemons= useSelector(state=>state.pokemons);
+export default function SeccionPokemon(){
+    const dispatch = useDispatch();
+    const pokemons = useSelector(state=>state.pokemons);
     const pokemonsDisplay = useSelector(state=>state.pokemonsDisplay);
+
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [index, setIndex] = useState(0);
-    const [pag, setPag] = useState();
+    const [pages, setPages] = useState([]);
+
     const cardPerPag= 12;
 
-    function paging(){
-        const arrButton = []
-        for(let i=1;i<=pag;i++){
-            arrButton.push(i)
-        }
-        return arrButton;
-    }
-
     
-
     useEffect(()=>{
         if(!pokemons){
             dispatch(getAllPokemons());
         } else {
             dispatch(setPokemons());   
         }
-
-        return ()=>{
-            dispatch(clearDisplay());
-        }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
 
     useEffect(()=>{
         const newPag= Math.ceil(pokemonsDisplay?.length/cardPerPag)
-        if(newPag<pag || isNaN(newPag)){
+        if(newPag<pages.length || isNaN(newPag)){
             setIndex(0);
         }
-        setPag(newPag);
+        setPages(paging(newPag));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemonsDisplay]);
 
 
@@ -65,33 +56,39 @@ export default function SeccionPokemon(props){
     }
 
     return (
-        <>
-        <div className={style.flex}>
+        <div className={style.flexContainer}>
             
-                {isFilterOpen && pokemonsDisplay &&
-                <div className={style.filter}><Filter /></div>
-                }
+            {isFilterOpen && pokemonsDisplay && <div className={style.filter}><Filter /></div>}
             
             <div className={style.flexcolum}>
                 <div className={style.tools}>
                     {pokemonsDisplay?.length>1 || isFilterOpen? <button onClick={()=>setIsFilterOpen(!isFilterOpen)}>
                         {isFilterOpen? "Close Filter" : "Filter / Sort" }
                     </button>: <></>}
-                    <Search filter={()=> setIsFilterOpen(false)}/>
+                    {pokemonsDisplay && <Search filter={()=> setIsFilterOpen(false)}/>}
+                    
                 </div>
-                <div className={style.seccion}>
-                    { pokemons?.error?<span>{pokemons.error}</span> 
-                    :pokemonsDisplay?.error? <div><img src={errorPikachu} alt="errorImg"/><span className={style.span}>Pokemon not found, try again!</span></div>
-                    :pokemonsDisplay?.length? pokemonsDisplay.slice(index,index+cardPerPag).map(pokemon=><CardPokemon key={pokemon.id} id={pokemon.id} image={pokemon.image} Types={pokemon.Types} name={pokemon.name}/>) 
-                    : <div><img src={loadingPikachu} alt="loadingImg"/><span className={style.span}>loading</span></div>}
+                
+                <div className={style.section}>
+                    { pokemonsDisplay?.error? 
+                    <div>
+                        <img src={errorPikachu} alt="errorImg"/>
+                        <span className={style.span}>{pokemonsDisplay.error}</span>
+                    </div>
+                    :pokemonsDisplay?.length? 
+                    pokemonsDisplay.slice(index,index+cardPerPag).map(pokemon=><CardPokemon key={pokemon.id} id={pokemon.id} image={pokemon.image} Types={pokemon.Types} name={pokemon.name}/>) 
+                    :<div>
+                        <img src={loadingPikachu} alt="loadingImg"/>
+                        <span className={style.span}>loading</span>
+                    </div>}
                 </div>
+
                 <div>
                     {<button disabled={index>0?false:true} onClick={(e)=>handlePag(e)}>Prev</button>}
-                    {paging().map((b,i)=><button className={index+cardPerPag===b*cardPerPag?style.active:""} key={i} onClick={(e)=>handlePag(e,i)}>{b}</button>)}
+                    {pages.map((b,i)=><button className={index+cardPerPag===b*cardPerPag?style.active:""} key={i} onClick={(e)=>handlePag(e,i)}>{b}</button>)}
                     {<button disabled={pokemonsDisplay?.length-index>cardPerPag?false:true} onClick={(e)=>handlePag(e)}>Next</button>}
                 </div>
             </div>
         </div>
-        </>
     )
 }

@@ -1,39 +1,23 @@
-.flex {
+.flexContainer {
     margin: auto;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20rem;
-   
+    margin-left: 20rem;   
 }
 
-.flexColum {
-    width: 45%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.flexColumStart {
+.flexContent {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.logo {
-    width: 100%;
-}
-
 .title{
     color: #FFD336;
     text-shadow: 0px 0px 10px red;
     letter-spacing: 0.1rem;
-}
-
-.ico{
-    max-width: 1.2rem;
 }
 
 .flexSpan {
@@ -77,99 +61,36 @@
     }
 }
 
+.flexImage {
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.logo {
+    width: 100%;
+}
+
+
+.ico{
+    max-width: 1.2rem;
+}
+
+
 .content {
     display: flex;
     flex-direction: column;
     gap: 0.925rem;
     font-size: 1.25em;
     max-width: 100%;
-
-}
-
-.landing_text_div {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-left: 4em;
-    max-width: 50vw;
-}
-
-/* .landing_text_div_homeButton {
-    position:relative;
-    right: 3em;
-    margin-top: 3em;
-    background: rgb(210,35,50);
-    background: linear-gradient(138deg, rgba(210,35,50,1) 13%, rgba(255,81,0,1) 40%, rgba(241,255,0,0.9026961126247374) 92%);
-    border-radius: 1em;
-    width: 20%;
-    height: 8vh;
-    border: 0px solid rgb(176, 27, 27);
-    box-shadow: 4px 5px 10px -3px rgb(254, 207, 0);
-    animation: fireButton 2s infinite;
-}
-.landing_text_div_homeButton:hover {
-    box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.64); 
-} */
-
-.button {
-    left: 100px;
-    padding: 2px 20px;
-    bottom: 16%;
-    font-size: 24px;
-    width: 150px;
-    height: 5vh;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: #9B2BC1;
-    background-color: #FFCC00;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #762B8E;
-    font-weight: 700;
-    transition: 0.6s;
-}
-  
-  .button:hover {
-    background-color: #762B8E;
-    background: #762B8E;
-    box-shadow: 0 0 5px #FFCC00,
-    0 0 15px #FFCC00,
-    0 0 30px #FFCC00,
-    0 0 30px #FFCC00; 
-    text-decoration: none; 
-    color: #FFCC00; 
-    font-weight: 700;
-    box-shadow: 0 2px #FFCC00;
-    transform: translateY(4px);
 }
 
 
+/* FRAME LEFT */
 
-
-
-
-
-
-
-
-
-.ashPokemons {
-    position:absolute;
-    top: 0%;
-    right: 0%;
-    z-index: 997;
-}
-
-.fireGif {
-    position:absolute;
-    overflow: hidden;
-    width: 600px;
-    z-index: 998;
-    right: 0%;
-    bottom: 0%;
-}
-.pokes {
+.framePokemons {
     position:absolute;
     top: 0%;
     left: 0%;
@@ -177,7 +98,7 @@
     transform: scaleX(-1);
 }
 
-.fire {
+.frameCharizard {
     position:absolute;
     overflow: hidden;
     width: 600px;
@@ -187,26 +108,28 @@
     transform: scaleX(-1);
 
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 1200px){
 
-    .fire, .pokes {
+    .frameCharizard, .framePokemons {
         display: none;
     }
 
-    .flex{
+    .flexContainer{
         margin: auto;
     }
 }
 
 @media (max-width: 900px){
-    .flex{
+    .flexContainer {
         margin: auto;
         flex-direction: column-reverse;
         height: 100vh;
     }
 
-    .flexColumStart{
+    .flexContent{
         justify-content: center;
         align-items: center;
     }

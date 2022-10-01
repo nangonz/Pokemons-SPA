@@ -18,7 +18,8 @@ export default function Footer(){
             color: "#fff",
             fontSize: "13px",
         }}>
-            <a href="https://www.soyhenry.com/" target="_blank" ><img style={{width:"2rem"}} src={logoHenry} alt="Henry-logo"/></a>
+            <a href="https://www.soyhenry.com/" target="_blank" rel="noreferrer">
+            <img style={{width:"2rem"}} src={logoHenry} alt="Henry-logo"/></a>
             <span>HENRY LABS - Individual Project - Damian Gonzalez PT07</span>
         </div>
     )

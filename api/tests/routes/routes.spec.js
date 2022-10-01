@@ -68,7 +68,7 @@ describe('Pokemon routes', () => {
     it('should respond with a 404 status code when the id is invalid or inexistend', async()=>{
       const response = await request.get('/pokemons/a150');
       expect(response.statusCode).toBe(404);
-      expect(response.body.error).toBe("Pokemon not Found");
+      expect(response.body.error).toBe("no matching ID");
       }
     );
 

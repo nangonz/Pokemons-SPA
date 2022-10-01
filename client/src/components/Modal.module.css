@@ -1,22 +1,29 @@
 .modal {
     position: fixed;
-    width: 28em;
-    height: 12em;
-    top: 40%;
+    top: 50%;
     left: 50%;
+    width: 35vw;
+    height: 30vh;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    border-radius: 15px;
-    padding: 30px;
-    z-index: 1000;
+    border-radius: 0.625rem;
+    padding: 1.875rem;
+    z-index: 1000;    
 }
 
 .modalBackground {
     position: fixed;
     top: 0;
-    bottom: 0;
-    right: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(133, 68, 232, 0.7);
     z-index: 1000;
+}
+
+@media (max-width: 900px){
+    .modal{
+        width: 60vw;
+        height: 45vh;
+    }
 }

@@ -6,12 +6,12 @@ import { getAllPokemons } from "../redux/actions";
 import style from "./Landing.module.css";
 //images
 import landingImage from '../images/logo.png';
-import pokefire from '../images/pokefire.gif';
-import ashPokemons from '../images/ashPokemons.gif';
+import frameCharizard from '../images/frameCharizard.gif';
+import framePokemons from '../images/framePokemons.gif';
 import icoPoke from '../images/ico-pokeball.png';
 
 
-export default function Landing(props){
+export default function Landing(){
 
     const dispatch = useDispatch();
 
@@ -20,35 +20,40 @@ export default function Landing(props){
     }, [dispatch]);
     
     return(
-        <div className={style.flex}>
-        <img className={style.fire} src={pokefire}></img>
-        <img className={style.pokes} src={ashPokemons}></img>
-            
+        <div className={style.flexContainer}>
+        <img className={style.frameCharizard} src={frameCharizard} alt="frame"></img>
+        <img className={style.framePokemons} src={framePokemons} alt="frame"></img>
 
-            <div className={style.flexColumStart} >
+            <div className={style.flexContent} >
                 <h1 className={style.title}>HI, NICE TO SEE YOU HERE</h1>
                 <div className={style.content}>
                     <div className={style.flexSpan}>
-                        <img className={style.ico} src={icoPoke}/><span>Find your favourites Pokemons</span>
+                        <img className={style.ico} src={icoPoke} alt="ico"/>
+                        <span>Find your favourites Pokemons</span>
                     </div>
                     <div className={style.flexSpan}>
-                        <img className={style.ico} src={icoPoke}/><span>Create your dreams Pokemons</span>
+                        <img className={style.ico} src={icoPoke} alt="ico"/>
+                        <span>Create your dreams Pokemons</span>
                     </div>
                     <div className={style.flexSpan}>
-                        <img className={style.ico} src={icoPoke}/><span>Filter and sort as you wish</span>
+                        <img className={style.ico} src={icoPoke} alt="ico"/>
+                        <span>Filter and sort as you wish</span>
                     </div>
                     <div className={style.flexSpan}>
-                        <img className={style.ico} src={icoPoke}/><span>Learn more about them</span>
+                        <img className={style.ico} src={icoPoke} alt="ico"/>
+                        <span>Learn more about them</span>
                     </div>
                 </div>
                 <h2 className={style.title}>LET'S HAVE FUN</h2>
-                <div className="btnPrincipal indexZ"><Link to='/home'><span>GO</span></Link></div>
+                <div style={{zIndex: 1}} className="btnPrincipal">
+                    <Link to='/home'><span>GO</span></Link>
+                </div>
             </div>
-            <div className={style.flexColum} >
+
+            <div className={style.flexImage} >
                 <img className={style.logo} src={landingImage} alt='landing logo'/>
             </div>
-        {/* <img className={style.fireGif} src={pokefire}></img>
-        <img className={style.ashPokemons} src={ashPokemons}></img> */}
+
         </div>
     )
 }

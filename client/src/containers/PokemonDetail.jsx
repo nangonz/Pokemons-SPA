@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
-import PreviewCardCreation from "../components/PreviewCardCreation";
+import CardDetail from "../components/CardDetail";
 import style from "./PokemonDetail.module.css";
 import loadingPikachu from "../images/loadingPikachu.gif";
 import errorPikachu from "../images/404-error-pokegif.gif";
@@ -28,8 +28,8 @@ export default function PokemonDetail({match}){
             <img className={style.imageDetailLeft} src={pokemonDetail.image} alt="pokemonBg"/>
             
             {pokemonDetail?.error?
-            <div><img className={style.gif} src={errorPikachu} alt="error"/><span className={style.span}>Pokemon ID not found, try again!</span></div>
-            :pokemonDetail? <PreviewCardCreation creation={{...pokemonDetail}}/>
+            <div><img className={style.gif} src={errorPikachu} alt="error"/><span className={style.span}>{pokemonDetail.error}</span></div>
+            :pokemonDetail? <CardDetail pokemon={{...pokemonDetail}}/>
             :<div><img className={style.gif} src={loadingPikachu} alt="loading"/><span className={style.span}>loading</span></div>}
            
             <img className={style.imageDetailRight} src={pokemonDetail.image} alt="pokemonBg"/>
