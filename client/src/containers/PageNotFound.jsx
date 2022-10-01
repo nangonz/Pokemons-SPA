@@ -6,9 +6,9 @@ const PageNotFound = (props) => {
 
     return (
         <div style={{color:"#fff"}}>
-            <img style={{maxWidth:"40vh"}} src={errorPikachu} alt="errorImage" />
+            <img style={{maxWidth:"40vh"}} src={errorPikachu} alt="Not found 404" />
             <h1>404 PAGE NOT FOUND</h1>
-            <p>Ooops, you seem to be lost,  <br/> shall we go back home?</p>
+            <p>You seem to be lost, shall we go back home?</p>
             <button onClick={()=>history.replace('/home')}>HOME</button>
             {/* <Link to='/home'><button>Regresar</button></Link> */}
         </div>

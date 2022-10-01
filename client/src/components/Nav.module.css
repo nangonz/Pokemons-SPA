@@ -22,3 +22,10 @@
 .logo:hover{
     transform: scale(1.02);
 }
+
+@media (max-height: 600px) {
+    .align {
+        justify-content: center;
+        gap: 2rem;
+    }
+}

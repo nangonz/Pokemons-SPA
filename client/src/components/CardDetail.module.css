@@ -315,5 +315,22 @@
     height: 14.25rem;
 }
 
+@media (max-height: 600px) {
+    .flexContainer {
+        height: 100%;
+
+    }
+    .card_preview_div {
+        width: 85vw;
+        height: 100vh;
+        min-width: 80vw;
+    }
+
+    .gridArea_imgDiv {
+        width: 11rem;
+        height: 14.25rem;
+    }
+}
+
 
 

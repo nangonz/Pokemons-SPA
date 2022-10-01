@@ -21,6 +21,10 @@
     z-index: 1000;
 }
 
+.logo {
+    max-width: 8.5vh;
+}
+
 @media (max-width: 900px){
     .modal{
         width: 60vw;
