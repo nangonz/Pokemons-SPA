@@ -26,7 +26,7 @@ export default function PokemonDetail({match}){
     return (
         <div className={style.container} >
             <span className={style.id}>{pokemonDetail.id}</span>
-            <img className={style.imageDetailLeft} src={pokemonDetail.image} alt="pokemonBg"/>
+            <img className={style.imageDetailLeft} src={pokemonDetail.image || who} alt="pokemonBg"/>
             
             {pokemonDetail?.error?
             <div><img className={style.gif} src={errorPikachu} alt="error"/><span className={style.span}>{pokemonDetail.error}</span></div>
