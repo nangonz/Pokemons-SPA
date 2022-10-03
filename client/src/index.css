@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
 :root {
   --navbar-dark-mode: #24252A;
+  --font-family-acme: Acme;
+}
+
+* {
+  font-family: var(--font-family-acme);
 }
 
 .App {
@@ -207,13 +214,14 @@ input[type="checkbox"]{
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #d9d9d9d5;
-  opacity: 70%;
+  color: #ffea08;
+  opacity: 0.7;
 }
 
 .label{
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 
 /* pokeball check */

@@ -56,7 +56,7 @@ const getPokemons = async (req, res) =>{
         dbPokemons? res.json([...PokeApiData, ...dbPokemons]): res.json(PokeApiData);
         
     } catch (error) {
-        return res.status(404).json({error: 'Pokemons not found'});
+        return res.status(404).json({error: 'Pokemons not found, reload the page'});
     }
 }
 

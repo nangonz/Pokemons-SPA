@@ -83,7 +83,7 @@ export default function SeccionPokemon(){
                     </div>}
                 </div>
 
-                <div>
+                <div className={style.pagination} >
                     {<button disabled={index>0?false:true} onClick={(e)=>handlePag(e)}>Prev</button>}
                     {pages.map((b,i)=><button className={index+cardPerPag===b*cardPerPag?style.active:""} key={i} onClick={(e)=>handlePag(e,i)}>{b}</button>)}
                     {<button disabled={pokemonsDisplay?.length-index>cardPerPag?false:true} onClick={(e)=>handlePag(e)}>Next</button>}

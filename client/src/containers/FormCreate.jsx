@@ -84,7 +84,8 @@ export default function FormCreate(){
 
         const newPokemon = {
             ...creation,
-            Types: creation.Types.map(type=>type.id)
+            Types: creation.Types.map(type=>type.id),
+            image: creation.image===""? undefined :creation.image
         }
 
         fetch(`${process.env.REACT_APP_API}/pokemons`, {method:"POST", headers: {
@@ -122,20 +123,57 @@ export default function FormCreate(){
         <div className={style.gridCreation}>
             <div className={style.form_div}>
                 <form className={style.form} onSubmit={(e)=>handleOnSubmit(e)}>
+
                     <fieldset className={style.description_fieldset}>
                         <legend className={style.legend}>POKEMON DESCRIPTION</legend>
-                        <div className={style.input}><label>Name:</label><span className={style.error}>{error.name}</span><input className={style.input_text} value={creation.name} name="name" placeholder="lower case text only..." maxLength="12" autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
-                        <div className={style.input}><label>Image:</label><span className={style.error}>{error.image}</span><input className={style.input_text} value={creation.image} name="image" type="url" placeholder="image URL..." autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
+                        <div className={style.input}>
+                            <label>Name:</label>
+                            <span className={style.error}>{error.name}</span>
+                            <input className={style.input_text} value={creation.name} name="name" placeholder="lower case text only..." maxLength="12" autoComplete="off" onChange={(e)=>handleOnChange(e)} />
+                        </div>
+                        <div className={style.input}>
+                            <label>Image:</label>
+                            <span className={style.error}>{error.image}</span>
+                            <input className={style.input_text} value={creation.image} name="image" type="url" placeholder="image URL..." autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
                         <div className={style.input}><label>Weight:</label><span className={style.error}>{error.weight}</span><input className={style.input_text} value={creation.weight} name="weight" type="number" min="1" step="0.01" placeholder="less than 1000 kgs" autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
-                        <div className={style.input}><label>Height:</label><span className={style.error}>{error.height}</span><input className={style.input_text} value={creation.height} name="height" type="number" min="1" step="0.01" placeholder="lower than 10 fts" autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
+                        <div className={style.input}>
+                            <label>Height:</label>
+                            <span className={style.error}>{error.height}</span>
+                            <input className={style.input_text} value={creation.height} name="height" type="number" min="1" step="0.01" placeholder="lower than 10 fts" autoComplete="off" onChange={(e)=>handleOnChange(e)} /></div>
                     </fieldset>
+
                     <fieldset className={style.description_fieldset}>
                         <legend className={style.legend}>POKEMON STATS</legend>
-                        <div className={style.input}><label>Health:</label><div className="box"><input className="range" name="hp" type="range" value={creation.hp} min="30" max="100" onChange={(e)=>handleOnChange(e)} /><span id="rangeValue">{creation.hp}</span></div></div>
-                        <div className={style.input}><label>Attack:</label><div className="box"><input className="range" name="attack" type="range" value={creation.attack} min="10" max="100" onChange={(e)=>handleOnChange(e)} /><span id="rangeValue">{creation.attack}</span></div></div>
-                        <div className={style.input}><label>Defense:</label><div className="box"><input className="range" name="defense" type="range" value={creation.defense} min="10" max="100" onChange={(e)=>handleOnChange(e)} /><span id="rangeValue">{creation.defense}</span></div></div>
-                        <div className={style.input}><label>Speed:</label><div className="box"><input className="range" name="speed" type="range" value={creation.speed} min="10" max="100" onChange={(e)=>handleOnChange(e)} /><span id="rangeValue">{creation.speed}</span></div></div>
+                        <div className={style.input}>
+                            <label>Health:</label>
+                            <div className="box">
+                                <input className="range" name="hp" type="range" value={creation.hp} min="30" max="100" onChange={(e)=>handleOnChange(e)} />
+                                <span id="rangeValue">{creation.hp}</span>
+                            </div>
+                        </div>
+                        <div className={style.input}>
+                            <label>Attack:</label>
+                            <div className="box">
+                                <input className="range" name="attack" type="range" value={creation.attack} min="10" max="100" onChange={(e)=>handleOnChange(e)} />
+                                <span id="rangeValue">{creation.attack}</span>
+                            </div>
+                        </div>
+                        <div className={style.input}>
+                            <label>Defense:</label>
+                            <div className="box">
+                                <input className="range" name="defense" type="range" value={creation.defense} min="10" max="100" onChange={(e)=>handleOnChange(e)} />
+                                <span id="rangeValue">{creation.defense}</span>
+                            </div>
+                        </div>
+                        <div className={style.input}>
+                            <label>Speed:</label>
+                            <div className="box">
+                                <input className="range" name="speed" type="range" value={creation.speed} min="10" max="100" onChange={(e)=>handleOnChange(e)} />
+                                <span id="rangeValue">{creation.speed}</span>
+                            </div>
+                        </div>
                     </fieldset>
+
                     <fieldset className={style.description_fieldset}>      
                         <legend className={style.legend}>POKEMON TYPES:</legend>
                         <div className={style.grid}>
@@ -145,6 +183,7 @@ export default function FormCreate(){
                         </div>
                         <span className={style.error}>{error.Types}</span>      
                     </fieldset>
+
                     <button className={style.btnCreate} disabled={error.disabled} onClick={()=>setIsModalOpen(true)} type="submit">CREATE POKEMON</button>
                 </form>
             </div>
