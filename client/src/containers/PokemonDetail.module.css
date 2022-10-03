@@ -31,7 +31,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    opacity: 5%;
+    opacity: 0.05;
     transform: scaleX(-1);
     width: 35rem;
     max-height: 99%;
@@ -54,7 +54,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    opacity: 5%;
+    opacity: 0.05;
     width: 35rem;
     max-height: 99%;
     transition: 0.2s ease-in-out;
