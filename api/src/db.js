@@ -6,8 +6,8 @@ const modelType = require('./models/Type.js');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
-// const sequelize = new Sequelize(`postgres://${ DB_USER }:${ DB_PASSWORD }@${ DB_HOST }:${ DB_PORT }/${ DB_NAME }`)
-const sequelize = new Sequelize({
+const sequelize = new Sequelize(`postgres://${ DB_USER }:${ DB_PASSWORD }@${ DB_HOST }:${ DB_PORT }/${ DB_NAME }`)
+/* const sequelize = new Sequelize({
   database: DB_NAME,
   dialect: "postgres",
   host: DB_HOST,
@@ -27,7 +27,7 @@ const sequelize = new Sequelize({
     keepAlive: true,
   },
   ssl: true
-});
+}); */
 
 
 // Injectamos la conexion (sequelize) a todos los modelos
