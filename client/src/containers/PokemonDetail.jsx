@@ -4,6 +4,7 @@ import CardDetail from "../components/CardDetail";
 import style from "./PokemonDetail.module.css";
 import loadingPikachu from "../images/loadingPikachu.gif";
 import errorPikachu from "../images/404-error-pokegif.gif";
+import who from "../images/who.png"
 
 export default function PokemonDetail({match}){
     
@@ -32,7 +33,7 @@ export default function PokemonDetail({match}){
             :pokemonDetail? <CardDetail pokemon={{...pokemonDetail}}/>
             :<div><img className={style.gif} src={loadingPikachu} alt="loading"/><span className={style.span}>loading</span></div>}
            
-            <img className={style.imageDetailRight} src={pokemonDetail.image} alt="pokemonBg"/>
+            <img className={style.imageDetailRight} src={pokemonDetail.image || who} alt="pokemonBg"/>
         </div>
     )
 }
